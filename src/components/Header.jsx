@@ -1,4 +1,5 @@
-import Button from "./Button.jsx";
+import Button from "./basic/Button.jsx";
+import Select from "./basic/Select.jsx";
 
 export default function Header() {
   return (
@@ -15,20 +16,26 @@ export default function Header() {
         <input type="text" placeholder="search for a movie" />
       </div>
       <div className="select-wrapper">
-        <div className="genre">
-          <label htmlFor="genre-select">test</label>
-          <select id="genre-select" className="select">
-            <option value="test">test1</option>
-          </select>
-        </div>
-
-        <div className="genre">
-          <label htmlFor="genre-select">test</label>
-          <select id="genre-select" className="select">
-            <option value="test">test1</option>
-          </select>
-        </div>
-        
+        <Select 
+          id="genre"
+          label="Genre"
+          value=""
+          onChange = {() => {}}
+          options = {[
+            {label: "All", value:""},
+            {label: "Horror", value:"horror"}
+          ]}
+        />
+        <Select 
+          id="rating"
+          label="Rating"
+          value=""
+          onChange = {() => {}}
+          options = {[
+            {label: "1", value:""},
+            {label: "2", value:""}
+          ]}
+        />
       </div>
     </header>
   );

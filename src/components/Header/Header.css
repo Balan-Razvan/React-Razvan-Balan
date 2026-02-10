@@ -1,0 +1,62 @@
+.header {
+  background-color: #181818;
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header .buttons-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .input-wrapper {
+  flex: 1 1 280px;
+  display: flex;
+}
+
+.header .input-wrapper input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #3a3a3a;
+  background: #202020;
+  color: #fff;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.header .input-wrapper input[type="text"]::placeholder {
+  color: #9aa0a6;
+}
+
+.header .select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.header label {
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .header .buttons-wrapper {
+    gap: 8px;
+  }
+
+  .header .select-wrapper {
+    gap: 10px;
+  }
+}

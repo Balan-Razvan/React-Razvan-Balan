@@ -1,18 +1,15 @@
-import Header from "./components/Header.jsx";
-import movies from './assets/Archive/movies.json';
-import MovieList from "./components/MovieList.jsx";
+import Header from "./components/Header/Header";
+import MovieList from "./components/MovieList/MovieList";
+import movies from "./assets/Archive/movies.json";
+import "./App.css";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <header>
-        < Header />
-      </header>
+    <>
+      <Header />
       <main>
-        <MovieList movies={movies}/>
+        <MovieList movies={movies} />
       </main>
-    </div>
+    </>
   );
 }
-
-export default App;

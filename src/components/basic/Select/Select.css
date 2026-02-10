@@ -1,0 +1,19 @@
+.select-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.select-label {
+  font-size: 0.9rem;
+}
+
+.select {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #3a3a3a;
+  background: #202020;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}

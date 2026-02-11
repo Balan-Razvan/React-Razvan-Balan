@@ -1,8 +1,17 @@
 import Button from "../basic/Button/Button";
 import Select from "../basic/Select/Select";
 import "./Header.css";
+import { GENRE_OPTIONS, RATING_OPTIONS } from "../../utils/constants.js"
 
-export default function Header({ search, onSearchChange }) {
+
+export default function Header({ 
+  search, 
+  onSearchChange,
+  genre, 
+  onGenreChange,
+  rating,
+  onRatingChange,
+}) {
   return (
     <header className="header">
       <div className="buttons-wrapper">
@@ -20,22 +29,16 @@ export default function Header({ search, onSearchChange }) {
         <Select
           id="genre"
           label="Genre"
-          value=""
-          onChange={() => {}}
-          options={[
-            { label: "All", value: "" },
-            { label: "Horror", value: "horror" },
-          ]}
+          value={genre}
+          onChange={(e) => onGenreChange(e.target.value)}
+          options={GENRE_OPTIONS}
         />
         <Select
           id="rating"
           label="Rating"
-          value=""
-          onChange={() => {}}
-          options={[
-            { label: "1", value: "" },
-            { label: "2", value: "" },
-          ]}
+          value={rating}
+          onChange={(e) => onRatingChange(e.target.value)}
+          options={RATING_OPTIONS}
         />
       </div>
     </header>

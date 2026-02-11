@@ -2,7 +2,7 @@ import Button from "../basic/Button/Button";
 import Select from "../basic/Select/Select";
 import "./Header.css";
 
-export default function Header() {
+export default function Header({ search, onSearchChange }) {
   return (
     <header className="header">
       <div className="buttons-wrapper">
@@ -14,7 +14,7 @@ export default function Header() {
         </Button>
       </div>
       <div className="input-wrapper">
-        <input type="text" placeholder="Search for a movie..." />
+        <input type="text" placeholder="Search for a movie..." value={search} onChange={(e) => onSearchChange(e.target.value)}/>
       </div>
       <div className="select-wrapper">
         <Select

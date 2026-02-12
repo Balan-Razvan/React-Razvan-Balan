@@ -2,12 +2,32 @@ import Header from "./components/Header/Header";
 import MovieList from "./components/MovieList/MovieList";
 import movies from "./assets/Archive/movies.json";
 import "./App.css";
-import { useState } from "react";
+import { use, useState } from "react";
+import { useLocalStorage } from "./storage/useLocalStorage";
+
 
 export default function App() {
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("");
   const [rating, setRating] = useState("");
+  const [watchlist, setWatchlist] = useLocalStorage("movieWatchList", []);
+  const [showWatchList, setShowWatchList] = useState(false); 
+
+
+  const addToWatchlist = (movie) => {
+    if(!watchlist.find((m) => m.id === movie.id)) {
+      setWatchlist([...watchlist, movie]);
+    }
+  };
+
+  const removeFromWatchlist = (movieId) => {
+    setWatchlist(watchlist.filter((movie) => movie.id !== movieId));
+  };
+
+  const isInWatchlist = (movieId) => {
+    return watchlist.some((movie) => movie.id === movieId);
+  };
+
 
   const filteredMovies = movies.filter((movie) => {
     
@@ -39,6 +59,9 @@ export default function App() {
   
   });
 
+
+  const moviesToDisplay = showWatchList ? watchlist : filteredMovies;
+
   return (
     <>
       <Header 
@@ -48,9 +71,18 @@ export default function App() {
         onGenreChange = {setGenre}
         rating = {rating}
         onRatingChange = {setRating}
+        showWatchList = {showWatchList}
+        onToggleWatchlist = {() => setShowWatchList(!showWatchList)}
+        watchlistCount = {watchlist.length}
         />
       <main>
-        <MovieList movies={filteredMovies} />
+        <MovieList 
+        movies={moviesToDisplay}
+        onAddToWatchlist = {addToWatchlist}
+        onRemoveFromWatchlist = {removeFromWatchlist}
+        isInWatchlist = {isInWatchlist}
+        showWatchList = {showWatchList}
+        />
       </main>
     </>
   );

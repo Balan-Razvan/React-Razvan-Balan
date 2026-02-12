@@ -1,4 +1,4 @@
-# Razva Balan - React Movie app
+# Razvan Balan - React Movie app
 
 ## Functionalitati implementate
 - lista cu movie cards

@@ -19,15 +19,15 @@ export default function Header({
       <div className="buttons-wrapper">
         <Button 
           type="button" 
-          onClick={() => {onToggleWatchlist}}
-          disabled={showWatchList === true}
+          onClick={() => onToggleWatchlist()}
+          disabled={showWatchList === false}
           >
           Home
         </Button>
         <Button 
           type="button" 
-          onClick={() => {onToggleWatchlist}}
-          disable={showWatchList === false}
+          onClick={() => onToggleWatchlist()}
+          disable={showWatchList === true}
           >
           Watchlist ({watchlistCount})
         </Button>

@@ -2,7 +2,7 @@ import Header from "./components/Header/Header";
 import MovieList from "./components/MovieList/MovieList";
 import movies from "./assets/Archive/movies.json";
 import "./App.css";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useLocalStorage } from "./storage/useLocalStorage";
 
 export default function App() {
@@ -11,6 +11,20 @@ export default function App() {
   const [rating, setRating] = useState("");
   const [watchlist, setWatchlist] = useLocalStorage("movieWatchList", []);
   const [showWatchList, setShowWatchList] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [allMovies, setAllMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async() => {
+      setIsLoading(true);
+
+      // simluare api
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setAllMovies(movies);
+      setIsLoading(false);
+    };
+    fetchMovies();
+  }, []);
 
   const addToWatchlist = (movie) => {
     if (!watchlist.find((m) => m.id === movie.id)) {
@@ -56,8 +70,11 @@ export default function App() {
     });
   };
 
-  const moviesToDisplay = showWatchList ? applyFilters(watchlist) : applyFilters(movies);
+  const moviesToDisplay = showWatchList ? applyFilters(watchlist) : applyFilters(allMovies);
 
+  if (isLoading) {
+    return <p>Loading..</p>
+  }
   return (
     <>
       <Header

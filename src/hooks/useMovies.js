@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import movies from "../assets/Archive/movies.json";
+import movies from "../assets/movies.json";
 
 export function useMovies() {
     const [allMovies, setAllMovies] = useState([]);

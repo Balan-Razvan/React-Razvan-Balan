@@ -5,11 +5,14 @@ export default function MovieCard({
   movie,
   onAddToWatchlist,
   onRemoveFromWatchlist,
-  isInWatchlist
+  isInWatchlist,
+  onAddToFavorites,
+  onRemoveFromFavorites,
+  isInFavorites,
 }) {
   const { title, image, genre, rating } = movie;
   const imageUrl = new URL(
-    `../../assets/Archive/images/${image}`,
+    `../../assets/images/${image}`,
     import.meta.url
   ).href;
 
@@ -21,6 +24,14 @@ export default function MovieCard({
     }
   }
 
+  const handleFavoritesToggle = () => {
+    if (isInFavorites(movie.id)) {
+      onRemoveFromFavorites(movie.id);
+    } else {
+      onAddToFavorites(movie);
+    }
+  }
+
   return (
     <div className="movie-card">
       <img className="movie-image" src={imageUrl} alt={title} />
@@ -29,6 +40,9 @@ export default function MovieCard({
       <p className="movie-rating">Rating: {rating}</p>
       <Button type="button" onClick={handleWatchlistToggle}>
         {isInWatchlist(movie.id) ? "Remove from watchlist" : "Add to watchlist"}
+      </Button>
+      <Button type="button" onClick={handleFavoritesToggle}>
+        {isInFavorites(movie.id) ? "Remove from favorites" : "Add to favorites"}
       </Button>
     </div>
   );

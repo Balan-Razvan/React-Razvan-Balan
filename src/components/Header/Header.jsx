@@ -27,7 +27,7 @@ export default function Header({
         <Button 
           type="button" 
           onClick={() => onToggleWatchlist()}
-          disable={showWatchList === true}
+          disabled={showWatchList === true}
           >
           Watchlist ({watchlistCount})
         </Button>

@@ -7,6 +7,10 @@ export default function MovieList({
   onRemoveFromWatchlist,
   isInWatchlist,
   showWatchList,
+  onAddToFavorites,
+  onRemoveFromFavorites,
+  isInFavorites,
+  showFavorites,
 }) {
   if (!movies || movies.length === 0) {
     const message = showWatchList ? "watchlist empty" : "no movies found";
@@ -22,6 +26,9 @@ export default function MovieList({
             onAddToWatchlist={onAddToWatchlist}
             onRemoveFromWatchlist={onRemoveFromWatchlist}
             isInWatchlist={isInWatchlist}
+            isInFavorites={isInFavorites}
+            onAddToFavorites={onAddToFavorites}
+            onRemoveFromFavorites={onRemoveFromFavorites}
             />
         </li>
       ))}

@@ -13,23 +13,34 @@ export default function Header({
   showWatchList,
   onToggleWatchlist,
   watchlistCount,
+  showFavorites,
+  onToggleFavorites,
+  favoritesCount,
+  onToggleHome,
 }) {
   return (
     <header className="header">
       <div className="buttons-wrapper">
-        <Button 
-          type="button" 
-          onClick={() => onToggleWatchlist()}
-          disabled={showWatchList === false}
-          >
+        <Button
+          type="button"
+          onClick={onToggleHome}
+          disabled={showWatchList === false && showFavorites === false}
+        >
           Home
         </Button>
-        <Button 
-          type="button" 
+        <Button
+          type="button"
           onClick={() => onToggleWatchlist()}
           disabled={showWatchList === true}
-          >
+        >
           Watchlist ({watchlistCount})
+        </Button>
+        <Button
+          type="button"
+          onClick={() => onToggleFavorites()}
+          disabled={showFavorites === true}
+        >
+          Favorites ({favoritesCount})
         </Button>
       </div>
       <div className="input-wrapper">

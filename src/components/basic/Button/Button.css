@@ -10,6 +10,21 @@
     transform 0.05s ease;
 }
 
+.btn:hover:not(:disabled) {
+  background: #333;
+  border-color: #4a4a4a;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.5; 
+  cursor: pointer;
+  background: #1a1a1a;
+}
+
 .btn:hover {
   background: #333;
   border-color: #4a4a4a;

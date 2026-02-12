@@ -41,3 +41,8 @@
     height: 220px;
   }
 }
+
+.movie-card .btn {
+  margin: 10px;
+  width: calc(100% - 20px);
+}

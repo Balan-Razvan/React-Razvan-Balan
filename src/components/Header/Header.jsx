@@ -1,29 +1,44 @@
 import Button from "../basic/Button/Button";
 import Select from "../basic/Select/Select";
 import "./Header.css";
-import { GENRE_OPTIONS, RATING_OPTIONS } from "../../utils/constants.js"
+import { GENRE_OPTIONS, RATING_OPTIONS } from "../../utils/constants.js";
 
-
-export default function Header({ 
-  search, 
+export default function Header({
+  search,
   onSearchChange,
-  genre, 
+  genre,
   onGenreChange,
   rating,
   onRatingChange,
+  showWatchList,
+  onToggleWatchlist,
+  watchlistCount,
 }) {
   return (
     <header className="header">
       <div className="buttons-wrapper">
-        <Button type="button" onClick={() => {}}>
+        <Button 
+          type="button" 
+          onClick={() => onToggleWatchlist()}
+          disabled={showWatchList === false}
+          >
           Home
         </Button>
-        <Button type="button" onClick={() => {}}>
-          Watchlist
+        <Button 
+          type="button" 
+          onClick={() => onToggleWatchlist()}
+          disable={showWatchList === true}
+          >
+          Watchlist ({watchlistCount})
         </Button>
       </div>
       <div className="input-wrapper">
-        <input type="text" placeholder="Search for a movie..." value={search} onChange={(e) => onSearchChange(e.target.value)}/>
+        <input
+          type="text"
+          placeholder="Search for a movie..."
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+        />
       </div>
       <div className="select-wrapper">
         <Select

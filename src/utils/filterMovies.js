@@ -1,6 +1,6 @@
 export function filterMovies(movies, {search, genre, rating}) {
     return movies.filter((movie) => {
-        const matchesSearch = !search || movie.title.tolowerCase().includes(search.tolowerCase());
+        const matchesSearch = !search || movie.title.toLowerCase().includes(search.toLowerCase());
 
         const matchesGenre = !genre || movie.genre === genre;
 

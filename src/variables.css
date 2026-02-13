@@ -1,0 +1,96 @@
+:root {
+  --color-primary: #0a9396; 
+  --color-primary-dark: #005f73;
+  --color-primary-light: #94d2bd;
+
+  --color-text-primary: #001219;
+  --color-text-secondary: #0a9396;
+  --color-text-muted: #94d2bd;
+  --color-text-white: #ffffff;
+
+  --color-bg-white: #ffffff;
+  --color-bg-light: #efe3bd;
+  --color-bg-subtle: #94d2bd;
+
+  --color-border-default: #94d2bd;
+  --color-border-hover: #0a9396;
+  --color-border-focus: #005f73;
+
+  --color-accent: #ee9b00;
+  --color-accent-strong: #ca6702;
+  --color-danger: #9b2226;
+  --color-warning: #ee9b00;
+  --color-info: #0a9396;
+
+  --color-disabled: #e9d8a6;
+  --color-disabled-dark: #ca6702;
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  --gradient-disabled: linear-gradient(
+    135deg,
+    var(--color-disabled) 0%,
+    var(--color-disabled-dark) 100%
+  );
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 28px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 2px 6px rgba(102, 126, 234, 0.3);
+  --shadow-md: 0 2px 8px rgba(102, 126, 234, 0.3);
+  --shadow-lg: 0 4px 12px rgba(102, 126, 234, 0.4);
+  --shadow-xl: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-2xl: 0 12px 30px rgba(102, 126, 234, 0.25);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-header: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  --focus-ring: 0 0 0 4px rgba(102, 126, 234, 0.1);
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  --font-size-xs: 0.875rem;
+  --font-size-sm: 0.9rem;
+  --font-size-base: 0.95rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.4rem;
+  --font-size-3xl: 1.5rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --opacity-disabled: 0.6;
+  --opacity-translucent: 0.15;
+  --opacity-semi: 0.9;
+  --opacity-glass: 0.98;
+
+  --container-max-width: 1280px;
+  --container-sm-width: 500px;
+
+  --card-image-height: 340px;
+  --card-image-height-tablet: 280px;
+  --card-image-height-mobile: 240px;
+
+  --grid-min-column-width: 260px;
+  --grid-gap: var(--spacing-3xl);
+}

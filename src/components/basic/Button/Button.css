@@ -1,35 +1,30 @@
 .btn {
-  background: #2a2a2a;
-  color: #fff;
-  border: 1px solid #3a3a3a;
-  border-radius: 6px;
-  padding: 8px 14px;
+  background: var(--gradient-primary);
+  color: var(--color-text-white);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-xl);
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: background 0.15s ease, border-color 0.15s ease,
-    transform 0.05s ease;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
 }
 
 .btn:hover:not(:disabled) {
-  background: #333;
-  border-color: #4a4a4a;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn:active:not(:disabled) {
-  transform: translateY(1px);
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn:disabled {
-  opacity: 0.5; 
-  cursor: pointer;
-  background: #1a1a1a;
-}
-
-.btn:hover {
-  background: #333;
-  border-color: #4a4a4a;
-}
-
-.btn:active {
-  transform: translateY(1px);
+  opacity: var(--opacity-disabled); 
+  cursor: not-allowed;
+  background: var(--gradient-disabled);
+  box-shadow: none;
+  transform: none;
 }

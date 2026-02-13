@@ -1,62 +1,76 @@
 .header {
-  background-color: #181818;
-  color: #fff;
-  padding: 16px 20px;
+  background: rgba(255, 255, 255, var(--opacity-glass));
+  backdrop-filter: blur(10px);
+  color: var(--color-text-primary);
+  padding: var(--spacing-xl) var(--spacing-3xl);
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-xl);
   flex-wrap: wrap;
+  box-shadow: var(--shadow-header);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-2xl);
 }
 
 .header .buttons-wrapper {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--spacing-md);
 }
 
 .header .input-wrapper {
-  flex: 1 1 280px;
+  flex: 1 1 300px;
   display: flex;
 }
 
 .header .input-wrapper input[type="text"] {
   width: 100%;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #3a3a3a;
-  background: #202020;
-  color: #fff;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border-default);
+  background: var(--color-bg-light);
+  color: var(--color-text-primary);
   outline: none;
-  font-size: 0.95rem;
+  font-size: var(--font-size-md);
+  transition: all var(--transition-normal);
+}
+
+.header .input-wrapper input[type="text"]:focus {
+  border-color: var(--color-border-focus);
+  background: var(--color-bg-white);
+  box-shadow: var(--focus-ring);
 }
 
 .header .input-wrapper input[type="text"]::placeholder {
-  color: #9aa0a6;
+  color: var(--color-text-muted);
 }
 
 .header .select-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-lg);
   flex-wrap: wrap;
 }
 
 .header label {
-  color: #ddd;
-  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
 }
 
 @media (max-width: 768px) {
   .header {
-    gap: 12px;
-    padding: 14px 16px;
+    gap: var(--spacing-lg);
+    padding: 18px var(--spacing-xl);
+    margin: var(--spacing-lg);
   }
 
   .header .buttons-wrapper {
-    gap: 8px;
+    gap: var(--spacing-md);
+    width: 100%;
   }
 
   .header .select-wrapper {
-    gap: 10px;
+    gap: var(--spacing-md);
   }
 }

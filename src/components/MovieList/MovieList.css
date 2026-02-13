@@ -1,18 +1,26 @@
 .movie-list {
   list-style: none;
   padding: 0;
-  margin: 20px 0 0;
+  margin: var(--spacing-2xl) 0 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-column-width), 1fr));
+  gap: var(--grid-gap);
 }
 
 .movie-list li {
   padding: 0;
+  display: flex;
 }
 
 .empty {
   text-align: center;
-  font-size: 1.2rem;
-  color: #777;
+  font-size: var(--font-size-2xl);
+  color: rgba(255, 255, 255, var(--opacity-semi));
+  background: rgba(255, 255, 255, var(--opacity-translucent));
+  backdrop-filter: blur(10px);
+  padding: var(--spacing-6xl) var(--spacing-4xl);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-5xl) auto;
+  max-width: var(--container-sm-width);
+  font-weight: var(--font-weight-medium);
 }

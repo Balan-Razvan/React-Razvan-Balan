@@ -8,7 +8,7 @@ import { useMemo, useState } from "react";
 import { useFavorites } from "./hooks/useFavorites";
 
 export default function App() {
-  const { allMovies, isLoading } = useMovies();
+  const { allMovies, isLoading, error } = useMovies();
   const { watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist } =
     useWatchList();
   const {
@@ -45,8 +45,20 @@ export default function App() {
     rating,
   ]);
 
+  if (error) {
+    return (
+      <div className="loading-container">
+        <span>{error}</span>
+      </div>
+    )
+  }
   if (isLoading) {
-    return <p>Loading..</p>;
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <span>Loading Movies..</span>
+      </div>
+    )
   }
   return (
     <>

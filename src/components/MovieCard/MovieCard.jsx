@@ -1,7 +1,7 @@
 import "./MovieCard.css";
-import Button from "../basic/Button/Button.jsx"
+import Button from "../basic/Button/Button.jsx";
 
-export default function MovieCard({ 
+export default function MovieCard({
   movie,
   onAddToWatchlist,
   onRemoveFromWatchlist,
@@ -11,10 +11,6 @@ export default function MovieCard({
   isInFavorites,
 }) {
   const { title, image, genre, rating } = movie;
-  const imageUrl = new URL(
-    `../../assets/images/${image}`,
-    import.meta.url
-  ).href;
 
   const handleWatchlistToggle = () => {
     if (isInWatchlist(movie.id)) {
@@ -22,7 +18,7 @@ export default function MovieCard({
     } else {
       onAddToWatchlist(movie);
     }
-  }
+  };
 
   const handleFavoritesToggle = () => {
     if (isInFavorites(movie.id)) {
@@ -30,20 +26,28 @@ export default function MovieCard({
     } else {
       onAddToFavorites(movie);
     }
-  }
+  };
 
   return (
-    <div className="movie-card">
-      <img className="movie-image" src={imageUrl} alt={title} />
-      <h2 className="movie-title">{title}</h2>
-      <p className="movie-genre">{genre}</p>
-      <p className="movie-rating">Rating: {rating}</p>
-      <Button type="button" onClick={handleWatchlistToggle}>
-        {isInWatchlist(movie.id) ? "Remove from watchlist" : "Add to watchlist"}
-      </Button>
-      <Button type="button" onClick={handleFavoritesToggle}>
-        {isInFavorites(movie.id) ? "Remove from favorites" : "Add to favorites"}
-      </Button>
+    <div className="movie-card-body">
+      <div className="movie-card">
+        <img className="movie-image" src={image} alt={title} />
+        <h2 className="movie-title">{title}</h2>
+        <p className="movie-genre">{genre}</p>
+        <p className="movie-rating">Rating: {rating}</p>
+        <div className="movie-card-actions">
+          <Button type="button" onClick={handleWatchlistToggle}>
+            {isInWatchlist(movie.id)
+              ? "Remove from watchlist"
+              : "Add to watchlist"}
+          </Button>
+          <Button type="button" onClick={handleFavoritesToggle}>
+            {isInFavorites(movie.id)
+              ? "Remove from favorites"
+              : "Add to favorites"}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

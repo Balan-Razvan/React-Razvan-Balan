@@ -4,24 +4,49 @@ import "./App.css";
 import { useMovies } from "./hooks/useMovies";
 import { useWatchList } from "./hooks/useWatchlist";
 import { useMovieFilters } from "./hooks/useMovieFilters";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useFavorites } from "./hooks/useFavorites";
 
 export default function App() {
-
-
-  const {allMovies, isLoading} = useMovies();
-  const {watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist} = useWatchList();
-  const {search, setSearch, genre, setGenre, rating, setRating, applyFilters} = useMovieFilters();
-  const {favorites, addToFavorites, removeFromFavorites, isInFavorites} = useFavorites();
+  const { allMovies, isLoading } = useMovies();
+  const { watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist } =
+    useWatchList();
+  const {
+    search,
+    setSearch,
+    genre,
+    setGenre,
+    rating,
+    setRating,
+    applyFilters,
+  } = useMovieFilters();
+  const { favorites, addToFavorites, removeFromFavorites, isInFavorites } =
+    useFavorites();
 
   const [showWatchList, setShowWatchList] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
 
+  const moviesToDisplay = useMemo(() => {
+    const source = showFavorites
+      ? favorites
+      : showWatchList
+        ? watchlist
+        : allMovies;
 
-  const moviesToDisplay = showFavorites ? applyFilters(favorites) : applyFilters(showWatchList ? watchlist : allMovies);
+    return applyFilters(source);
+  }, [
+    showFavorites,
+    favorites,
+    showWatchList,
+    watchlist,
+    allMovies,
+    search,
+    genre,
+    rating,
+  ]);
+
   if (isLoading) {
-    return <p>Loading..</p>
+    return <p>Loading..</p>;
   }
   return (
     <>
@@ -38,14 +63,12 @@ export default function App() {
           setShowFavorites(false);
         }}
         watchlistCount={watchlist.length}
-
         showFavorites={showFavorites}
         onToggleFavorites={() => {
           setShowFavorites(true);
           setShowWatchList(false);
         }}
         favoritesCount={favorites.length}
-
         onToggleHome={() => {
           setShowWatchList(false);
           setShowFavorites(false);
@@ -58,7 +81,6 @@ export default function App() {
           onRemoveFromWatchlist={removeFromWatchlist}
           isInWatchlist={isInWatchlist}
           showWatchList={showWatchList}
-
           onAddToFavorites={addToFavorites}
           onRemoveFromFavorites={removeFromFavorites}
           isInFavorites={isInFavorites}

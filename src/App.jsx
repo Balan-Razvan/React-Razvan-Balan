@@ -60,15 +60,19 @@ export default function App() {
       </div>
     )
   }
+
   return (
     <>
       <Header
         search={search}
         onSearchChange={setSearch}
+
         genre={genre}
         onGenreChange={setGenre}
+
         rating={rating}
         onRatingChange={setRating}
+        
         showWatchList={showWatchList}
         onToggleWatchlist={() => {
           setShowWatchList(true);
@@ -89,10 +93,12 @@ export default function App() {
       <main>
         <MovieList
           movies={moviesToDisplay}
+
           onAddToWatchlist={addToWatchlist}
           onRemoveFromWatchlist={removeFromWatchlist}
           isInWatchlist={isInWatchlist}
           showWatchList={showWatchList}
+
           onAddToFavorites={addToFavorites}
           onRemoveFromFavorites={removeFromFavorites}
           isInFavorites={isInFavorites}

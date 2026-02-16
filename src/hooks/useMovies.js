@@ -25,7 +25,7 @@ export function useMovies() {
         const fetchMovies = async () => {
 
             if(!API_KEY) {
-                setError("cant find api key");
+                setError("cant find api key, check for vite_ config");
                 setIsLoading(false);
                 return;
             }
@@ -38,7 +38,7 @@ export function useMovies() {
                 const searchData = await searchRes.json();
 
                 if(searchData.Response === "False") {
-                    setError("failed to fetch movies" || searchData.Error);
+                    setError(searchData.Error || "failed to fetch movies check response.json");
                     setAllMovies([]);
                     setIsLoading(false);
                     return;

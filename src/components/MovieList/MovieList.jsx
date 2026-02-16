@@ -13,7 +13,7 @@ export default function MovieList({
   showFavorites,
 }) {
   if (!movies || movies.length === 0) {
-    const message = showWatchList ? "watchlist empty" : "no movies found";
+    const message = showFavorites ? "favorites empty" : showWatchList ? "wathclist emtpy" : "no movies found";
     return <p className="empty">{message}</p>
   }
 

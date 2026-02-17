@@ -1,4 +1,4 @@
-import Button from "../basic/Button/Button";
+import { NavLink } from "react-router-dom";
 import Select from "../basic/Select/Select";
 import "./Header.css";
 import { GENRE_OPTIONS, RATING_OPTIONS } from "../../utils/constants.js";
@@ -10,39 +10,22 @@ export default function Header({
   onGenreChange,
   rating,
   onRatingChange,
-  showWatchList,
-  onToggleWatchlist,
   watchlistCount,
-  showFavorites,
-  onToggleFavorites,
   favoritesCount,
-  onToggleHome,
 }) {
   return (
     <header className="header">
-      <div className="buttons-wrapper">
-        <Button
-          type="button"
-          onClick={onToggleHome}
-          disabled={showWatchList === false && showFavorites === false}
-        >
+      <nav className="buttons-wrapper">
+        <NavLink to="/" className="nav-link btn" end>
           Home
-        </Button>
-        <Button
-          type="button"
-          onClick={() => onToggleWatchlist()}
-          disabled={showWatchList === true}
-        >
+        </NavLink>
+        <NavLink to="/watchlist" className="nav-link btn">
           Watchlist ({watchlistCount})
-        </Button>
-        <Button
-          type="button"
-          onClick={() => onToggleFavorites()}
-          disabled={showFavorites === true}
-        >
+        </NavLink>
+        <NavLink to="/favorites" className="nav-link btn">
           Favorites ({favoritesCount})
-        </Button>
-      </div>
+        </NavLink>
+      </nav>
       <div className="input-wrapper">
         <input
           type="text"

@@ -26,13 +26,15 @@ export function MovieProvider({ children }) {
     isInFavorites,
   };
 
-  return <MovieContext value={value}>{children}</MovieContext>;
-};
+  return (
+    <MovieContext.Provider value={value}>{children}</MovieContext.Provider>
+  );
+}
 
 export function useMovieContext() {
-    const context = useContext(MovieContext);
-    if(!context) {
-        throw new Error("usemoviecontext must be used iwth a movieprovider");
-    }
-    return context;
+  const context = useContext(MovieContext);
+  if (!context) {
+    throw new Error("useMovieContext must be used within a MovieProvider");
+  }
+  return context;
 }

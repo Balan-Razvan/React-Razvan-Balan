@@ -1,110 +1,23 @@
-import Header from "./components/Header/Header";
-import MovieList from "./components/MovieList/MovieList";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout/layout";
+import HomePage from "./pages/HomePage";
+import WatchlistPage from "./pages/WatchlistPage";
+import FavoritesPage from "./pages/FavoritesPage";
+import MovieDetailPage from "./pages/MovieDetailsPage";
+import { MovieProvider } from "./context/MovieContext";
 import "./App.css";
-import { useMovies } from "./hooks/useMovies";
-import { useWatchList } from "./hooks/useWatchlist";
-import { useMovieFilters } from "./hooks/useMovieFilters";
-import { useMemo, useState } from "react";
-import { useFavorites } from "./hooks/useFavorites";
 
 export default function App() {
-  const { allMovies, isLoading, error } = useMovies();
-  const { watchlist, addToWatchlist, removeFromWatchlist, isInWatchlist } =
-    useWatchList();
-  const {
-    search,
-    setSearch,
-    genre,
-    setGenre,
-    rating,
-    setRating,
-    applyFilters,
-  } = useMovieFilters();
-  const { favorites, addToFavorites, removeFromFavorites, isInFavorites } =
-    useFavorites();
-
-  const [showWatchList, setShowWatchList] = useState(false);
-  const [showFavorites, setShowFavorites] = useState(false);
-
-  const moviesToDisplay = useMemo(() => {
-    const source = showFavorites
-      ? favorites
-      : showWatchList
-        ? watchlist
-        : allMovies;
-
-    return applyFilters(source);
-  }, [
-    showFavorites,
-    favorites,
-    showWatchList,
-    watchlist,
-    allMovies,
-    search,
-    genre,
-    rating,
-  ]);
-
-  if (error) {
-    return (
-      <div className="loading-container">
-        <span>{error}</span>
-      </div>
-    )
-  }
-  if (isLoading) {
-    return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <span>Loading Movies..</span>
-      </div>
-    )
-  }
-
   return (
-    <>
-      <Header
-        search={search}
-        onSearchChange={setSearch}
-
-        genre={genre}
-        onGenreChange={setGenre}
-
-        rating={rating}
-        onRatingChange={setRating}
-        
-        showWatchList={showWatchList}
-        onToggleWatchlist={() => {
-          setShowWatchList(true);
-          setShowFavorites(false);
-        }}
-        watchlistCount={watchlist.length}
-        showFavorites={showFavorites}
-        onToggleFavorites={() => {
-          setShowFavorites(true);
-          setShowWatchList(false);
-        }}
-        favoritesCount={favorites.length}
-        onToggleHome={() => {
-          setShowWatchList(false);
-          setShowFavorites(false);
-        }}
-      />
-      <main>
-        <MovieList
-          movies={moviesToDisplay}
-
-          onAddToWatchlist={addToWatchlist}
-          onRemoveFromWatchlist={removeFromWatchlist}
-          isInWatchlist={isInWatchlist}
-          showWatchList={showWatchList}
-
-          onAddToFavorites={addToFavorites}
-          onRemoveFromFavorites={removeFromFavorites}
-          isInFavorites={isInFavorites}
-          showFavorites={showFavorites}
-        />
-      </main>
-    </>
+    <MovieProvider>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/watchlist" element={<WatchlistPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/movies/:id" element={<MovieDetailPage />} />
+        </Route>
+      </Routes>
+    </MovieProvider>
   );
 }

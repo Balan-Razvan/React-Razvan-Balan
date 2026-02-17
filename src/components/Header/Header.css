@@ -18,6 +18,20 @@
   gap: var(--spacing-md);
 }
 
+.header .nav-link {
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.header .nav-link.active {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+  background: var(--gradient-disabled);
+  box-shadow: none;
+  transform: none;
+}
+
 .header .input-wrapper {
   flex: 1 1 300px;
   display: flex;

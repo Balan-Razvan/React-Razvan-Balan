@@ -1,5 +1,5 @@
 import MovieCard from "../MovieCard/MovieCard";
-import "./MovieList.css";
+import styles from "./MovieList.module.css";
 
 export default function MovieList({
   movies,
@@ -12,11 +12,11 @@ export default function MovieList({
   isInFavorites,
 }) {
   if (!movies || movies.length === 0) {
-    return <p className="empty">{emptyMessage}</p>;
+    return <p className={styles.empty}>{emptyMessage}</p>;
   }
 
   return (
-    <ul className="movie-list">
+    <ul className={styles.movieList}>
       {movies.map((movie) => (
         <li key={movie.id}>
           <MovieCard

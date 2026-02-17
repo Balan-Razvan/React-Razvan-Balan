@@ -1,4 +1,4 @@
-import "./Select.css";
+import styles from "./Select.module.css";
 
 export default function Select({
   id,
@@ -9,13 +9,13 @@ export default function Select({
   className = "",
 }) {
   return (
-    <div className="select-group">
-      <label htmlFor={id} className="select-label">
+    <div className={styles.selectGroup}>
+      <label htmlFor={id} className={styles.selectLabel}>
         {label}
       </label>
       <select
         id={id}
-        className={`select ${className}`.trim()}
+        className={`${styles.select} ${className}`.trim()}
         value={value}
         onChange={onChange}
       >

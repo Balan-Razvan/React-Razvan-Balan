@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import { useMovieContext } from "../../context/MovieContext";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
+import styles from "./Layout.module.css";
 
 export default function Layout() {
   const { watchlist, favorites, isLoading, error } = useMovieContext();
@@ -20,14 +21,14 @@ export default function Layout() {
         watchlistCount={watchlist.length}
         favoritesCount={favorites.length}
       />
-      <main>
+      <main className={styles.main}>
         {error ? (
-          <div className="loading-container">
+          <div className={styles.loadingContainer}>
             <span>{error}</span>
           </div>
         ) : isLoading ? (
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
+          <div className={styles.loadingContainer}>
+            <div className={styles.loadingSpinner}></div>
             <span>Loading Movies..</span>
           </div>
         ) : (

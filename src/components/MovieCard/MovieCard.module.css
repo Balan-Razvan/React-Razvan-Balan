@@ -1,4 +1,5 @@
-.movie-card {
+
+.movieCard {
   width: 100%;
   background: var(--color-bg-white);
   border-radius: var(--radius-lg);
@@ -10,12 +11,12 @@
   height: 100%;
 }
 
-.movie-card:hover {
+.movieCard:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-2xl);
 }
 
-.movie-image {
+.movieImage {
   width: 100%;
   height: var(--card-image-height);
   object-fit: cover;
@@ -23,7 +24,7 @@
   flex: 0 0 var(--card-image-height);
 }
 
-.movie-image-placeholder {
+.movieImagePlaceholder {
   width: 100%;
   flex: 0 0 var(--card-image-height);
   background: var(--color-bg-light);
@@ -34,24 +35,23 @@
   font-size: var(--font-size-sm);
 }
 
-.movie-card-body {
+.movieCardBody {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
 }
 
-
-.movie-title-link {
+.movieTitleLink {
   text-decoration: none;
   color: inherit;
 }
 
-.movie-title-link:hover .movie-title {
+.movieTitleLink:hover .movieTitle {
   color: var(--color-primary);
 }
 
-.movie-title {
+.movieTitle {
   font-size: var(--font-size-xl);
   margin: 0 0 var(--spacing-sm);
   font-weight: var(--font-weight-semibold);
@@ -65,7 +65,7 @@
   transition: color var(--transition-fast);
 }
 
-.movie-genre {
+.movieGenre {
   margin: var(--spacing-xs) 0;
   color: var(--color-accent);
   font-size: var(--font-size-sm);
@@ -75,7 +75,7 @@
   text-overflow: ellipsis;
 }
 
-.movie-rating {
+.movieRating {
   margin: var(--spacing-xs) 0 var(--spacing-md);
   color: var(--color-text-tertiary);
   font-size: var(--font-size-sm);
@@ -84,35 +84,35 @@
   gap: 6px;
 }
 
-.movie-rating::before {
+.movieRating::before {
   content: "⭐";
   font-size: var(--font-size-md);
 }
 
-.movie-card .btn {
+.movieCardActions button {
   width: 90%;
   margin-bottom: 10px;
 }
 
-.movie-card-actions {
+.movieCardActions {
   display: flex;
-  flex-direction: column;    
-  gap: var(--spacing-sm);  
+  flex-direction: column;
+  gap: var(--spacing-sm);
   width: 100%;
   align-items: center;
 }
 
 @media (max-width: 768px) {
-  .movie-image,
-  .movie-image-placeholder {
+  .movieImage,
+  .movieImagePlaceholder {
     flex: 0 0 var(--card-image-height-tablet);
     height: var(--card-image-height-tablet);
   }
 }
 
 @media (max-width: 480px) {
-  .movie-image,
-  .movie-image-placeholder {
+  .movieImage,
+  .movieImagePlaceholder {
     flex: 0 0 var(--card-image-height-mobile);
     height: var(--card-image-height-mobile);
   }

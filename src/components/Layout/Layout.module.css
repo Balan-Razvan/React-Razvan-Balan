@@ -1,10 +1,11 @@
-main {
+
+.main {
   padding: var(--spacing-4xl) var(--spacing-2xl);
   max-width: var(--container-max-width);
   margin: 0 auto;
 }
 
-.loading-container {
+.loadingContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +15,7 @@ main {
   font-weight: var(--font-weight-medium);
 }
 
-.loading-spinner {
+.loadingSpinner {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -26,5 +27,7 @@ main {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }

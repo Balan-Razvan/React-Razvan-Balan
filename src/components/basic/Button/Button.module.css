@@ -22,7 +22,7 @@
 }
 
 .btn:disabled {
-  opacity: var(--opacity-disabled); 
+  opacity: var(--opacity-disabled);
   cursor: not-allowed;
   background: var(--gradient-disabled);
   box-shadow: none;

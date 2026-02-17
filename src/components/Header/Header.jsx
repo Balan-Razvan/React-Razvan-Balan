@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Select from "../basic/Select/Select";
-import "./Header.css";
+import styles from "./Header.module.css";
 import { GENRE_OPTIONS, RATING_OPTIONS } from "../../utils/constants.js";
 
 export default function Header({
@@ -14,19 +14,35 @@ export default function Header({
   favoritesCount,
 }) {
   return (
-    <header className="header">
-      <nav className="buttons-wrapper">
-        <NavLink to="/" className="nav-link btn" end>
+    <header className={styles.header}>
+      <nav className={styles.buttonsWrapper}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            [styles.navLink, isActive && styles.active].filter(Boolean).join(" ")
+          }
+          end
+        >
           Home
         </NavLink>
-        <NavLink to="/watchlist" className="nav-link btn">
+        <NavLink
+          to="/watchlist"
+          className={({ isActive }) =>
+            [styles.navLink, isActive && styles.active].filter(Boolean).join(" ")
+          }
+        >
           Watchlist ({watchlistCount})
         </NavLink>
-        <NavLink to="/favorites" className="nav-link btn">
+        <NavLink
+          to="/favorites"
+          className={({ isActive }) =>
+            [styles.navLink, isActive && styles.active].filter(Boolean).join(" ")
+          }
+        >
           Favorites ({favoritesCount})
         </NavLink>
       </nav>
-      <div className="input-wrapper">
+      <div className={styles.inputWrapper}>
         <input
           type="text"
           placeholder="Search for a movie..."
@@ -34,7 +50,7 @@ export default function Header({
           onChange={(e) => onSearchChange(e.target.value)}
         />
       </div>
-      <div className="select-wrapper">
+      <div className={styles.selectWrapper}>
         <Select
           id="genre"
           label="Genre"

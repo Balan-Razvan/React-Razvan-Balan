@@ -5,7 +5,6 @@ import WatchlistPage from "./pages/WatchlistPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import { MovieProvider } from "./context/MovieContext";
-import "./App.css";
 
 export default function App() {
   return (

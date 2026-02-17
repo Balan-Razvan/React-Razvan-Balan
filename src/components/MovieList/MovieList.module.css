@@ -1,4 +1,4 @@
-.movie-list {
+.movieList {
   list-style: none;
   padding: 0;
   margin: var(--spacing-2xl) 0 0;
@@ -7,7 +7,7 @@
   gap: var(--grid-gap);
 }
 
-.movie-list li {
+.movieList li {
   padding: 0;
   display: flex;
 }

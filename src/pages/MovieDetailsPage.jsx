@@ -1,7 +1,8 @@
+
 import { useParams, Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import Button from "../components/basic/Button/Button";
-import "./MovieDetailsPage.css";
+import styles from "./MovieDetailsPage.module.css";
 
 export default function MovieDetailsPage() {
   const { id } = useParams();
@@ -24,9 +25,9 @@ export default function MovieDetailsPage() {
 
   if (!movie) {
     return (
-      <div className="movie-detail-empty">
+      <div className={styles.movieDetailEmpty}>
         <p>Movie not found</p>
-        <Link to="/" className="btn nav-link">
+        <Link to="/" className={styles.backToHomeLink}>
           Back to Home
         </Link>
       </div>
@@ -34,21 +35,21 @@ export default function MovieDetailsPage() {
   }
 
   return (
-    <div className="movie-detail">
-      <Link to="/" className="back-link">
+    <div className={styles.movieDetail}>
+      <Link to="/" className={styles.backLink}>
         &larr; Back to movies
       </Link>
-      <div className="movie-detail-content">
+      <div className={styles.movieDetailContent}>
         <img
           src={movie.image}
           alt={movie.title}
-          className="movie-detail-image"
+          className={styles.movieDetailImage}
         />
-        <div className="movie-detail-info">
+        <div className={styles.movieDetailInfo}>
           <h1>{movie.title}</h1>
-          <p className="movie-detail-genre">{movie.genre}</p>
-          <p className="movie-detail-rating">Rating: {movie.rating}</p>
-          <div className="movie-detail-actions">
+          <p className={styles.movieDetailGenre}>{movie.genre}</p>
+          <p className={styles.movieDetailRating}>Rating: {movie.rating}</p>
+          <div className={styles.movieDetailActions}>
             <Button
               onClick={() =>
                 isInWatchlist(movie.id)

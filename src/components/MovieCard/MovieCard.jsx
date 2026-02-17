@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./MovieCard.css";
 import Button from "../basic/Button/Button.jsx";
 
@@ -31,8 +32,12 @@ export default function MovieCard({
   return (
     <div className="movie-card-body">
       <div className="movie-card">
-        <img className="movie-image" src={image} alt={title} />
-        <h2 className="movie-title">{title}</h2>
+        <Link to={`/movies/${movie.id}`}>
+          <img className="movie-image" src={image} alt={title} />
+        </Link>
+        <Link to={`/movies/${movie.id}`} className="movie-title-link">
+          <h2 className="movie-title">{title}</h2>
+        </Link>
         <p className="movie-genre">{genre}</p>
         <p className="movie-rating">Rating: {rating}</p>
         <div className="movie-card-actions">

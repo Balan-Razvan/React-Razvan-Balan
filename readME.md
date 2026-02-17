@@ -7,7 +7,7 @@
 - sort by rating sau genre
 - cautare film
 - pagina detalii film
-- fetch filme din API public
+- fetch filme din API public  (pentru setup trebuie un api key de la https://www.omdbapi.com/)
 - routing
 
 ## Pagina principala

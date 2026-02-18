@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useMovieContext } from "../context/MovieContext";
 import Button from "../components/basic/Button/Button";
 import styles from "./MovieDetailsPage.module.css";
+import { useMovieDetails } from "../hooks/useMovieDetails";
 
 export default function MovieDetailsPage() {
   const { id } = useParams();
@@ -18,15 +19,20 @@ export default function MovieDetailsPage() {
     isInFavorites,
   } = useMovieContext();
 
-  const movie =
-    allMovies.find((m) => m.id === id) ||
-    watchlist.find((m) => m.id === id) ||
-    favorites.find((m) => m.id === id);
+  const {movie, isLoading, error} = useMovieDetails(id);
 
-  if (!movie) {
+  if (isLoading) {
     return (
       <div className={styles.movieDetailEmpty}>
-        <p>Movie not found</p>
+        <p>Loading movie details...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={styles.movieDetailEmpty}>
+        <p>Error: {error}</p>
         <Link to="/" className={styles.backToHomeLink}>
           Back to Home
         </Link>

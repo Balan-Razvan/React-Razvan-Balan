@@ -4,7 +4,7 @@ const API_KEY = import.meta.env.VITE_MOVIE_API_KEY || "";
 const OMDB_URL = "https://www.omdbapi.com/";
 const IMG_URL = "https://img.omdbapi.com/";
 
-function mapOmdbToMovie(omdbMovie) {
+export function mapOmdbToMovie(omdbMovie) {
     const poster = omdbMovie.Poster;
     const image = poster && poster !== "N/A" ? poster : `${IMG_URL}?apikey=${API_KEY}&i=${omdbMovie.imdbID}`;
     return {
@@ -34,7 +34,7 @@ export function useMovies() {
             setError(null);
 
             try {
-                const searchRes = await fetch(`${OMDB_URL}?apikey=${API_KEY}&s=action&type=movie&page=1`);
+                const searchRes = await fetch(`${OMDB_URL}?apikey=${API_KEY}&s=action&type=movie&page=1`);   // fetch all movies
                 const searchData = await searchRes.json();
 
                 if(searchData.Response === "False") {
@@ -44,16 +44,16 @@ export function useMovies() {
                     return;
                 }
 
-                const searchResults = searchData.Search || [];
-                const movies = [];
+                 const searchResults = searchData.Search || [];
 
-                for (const item of searchResults) {
-                    const detailRes = await fetch(`${OMDB_URL}?apikey=${API_KEY}&i=${item.imdbID}`);
-                    const detail = await detailRes.json();
-                    if(detail.Response === "True") {
-                        movies.push(mapOmdbToMovie(detail));
-                    }
-                }
+                const detailPromises = searchResults.map(item => 
+                    fetch(`${OMDB_URL}?apikey=${API_KEY}&i=${item.imdbID}`)
+                        .then(res => res.json())
+                        .catch(() => ({Response: "False"}))
+                );
+                const detailResults = await Promise.all(detailPromises);
+                const movies = detailResults.filter(d => d && d.Response === "True").map(mapOmdbToMovie);
+
                 setAllMovies(movies);
 
             } catch (err) {

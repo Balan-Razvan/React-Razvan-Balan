@@ -4,7 +4,7 @@ const API_KEY = import.meta.env.VITE_MOVIE_API_KEY || "";
 const OMDB_URL = "https://www.omdbapi.com/";
 const IMG_URL = "https://img.omdbapi.com/";
 
-function mapOmdbToMovie(omdbMovie) {
+export function mapOmdbToMovie(omdbMovie) {
     const poster = omdbMovie.Poster;
     const image = poster && poster !== "N/A" ? poster : `${IMG_URL}?apikey=${API_KEY}&i=${omdbMovie.imdbID}`;
     return {

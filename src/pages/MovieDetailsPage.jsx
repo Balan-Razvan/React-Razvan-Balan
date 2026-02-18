@@ -21,7 +21,9 @@ export default function MovieDetailsPage() {
   const movie =
     allMovies.find((m) => m.id === id) ||
     watchlist.find((m) => m.id === id) ||
-    favorites.find((m) => m.id === id);
+    favorites.find((m) => m.id === id);   // not optimized
+
+    // todo - instead of searching in all movies, fetch the movie by id
 
   if (!movie) {
     return (

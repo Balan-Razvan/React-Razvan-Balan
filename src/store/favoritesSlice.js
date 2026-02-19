@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-STORAGE_KEY = "favorites";
+const STORAGE_KEY = "favorites";
 
 function getInitialFavorites() {
     try {

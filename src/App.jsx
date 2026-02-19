@@ -4,11 +4,18 @@ import HomePage from "./pages/HomePage";
 import WatchlistPage from "./pages/WatchlistPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
-import { MovieProvider } from "./context/MovieContext";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchMovies } from "./store/moviesSlice";
 
 export default function App() {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
   return (
-    <MovieProvider>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
@@ -17,6 +24,5 @@ export default function App() {
           <Route path="/movies/:id" element={<MovieDetailsPage />} />
         </Route>
       </Routes>
-    </MovieProvider>
   );
 }

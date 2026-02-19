@@ -1,38 +1,57 @@
-
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useMovieContext } from "../context/MovieContext";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "../components/basic/Button/Button";
+import { fetchMovieById } from "../store/moviesSlice";
+import {
+  addToWatchlist,
+  removeFromWatchlist,
+  selectWatchlist,
+} from "../store/watchlistSlice";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  selectFavorites,
+} from "../store/favoritesSlice";
 import styles from "./MovieDetailsPage.module.css";
-import { useMovieDetails } from "../hooks/useMovieDetails";
 
 export default function MovieDetailsPage() {
   const { id } = useParams();
-  const {
-    allMovies,
-    watchlist,
-    favorites,
-    addToWatchlist,
-    removeFromWatchlist,
-    isInWatchlist,
-    addToFavorites,
-    removeFromFavorites,
-    isInFavorites,
-  } = useMovieContext();
+  const dispatch = useDispatch();
+  const movie = useSelector((state) => state.movies.selectedMovie);
+  const movieDetailLoading = useSelector(
+    (state) => state.movies.movieDetailLoading
+  );
+  const movieDetailError = useSelector(
+    (state) => state.movies.movieDetailError
+  );
+  const watchlist = useSelector(selectWatchlist);
+  const favorites = useSelector(selectFavorites);
 
-  const {movie, isLoading, error} = useMovieDetails(id);
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchMovieById(id));
+    }
+  }, [id, dispatch]);
 
-  if (isLoading) {
+  const isInWatchlist = movie && watchlist.some((m) => m.id === movie.id);
+  const isInFavorites = movie && favorites.some((m) => m.id === movie.id);
+
+  if (movieDetailLoading) {
     return (
       <div className={styles.movieDetailEmpty}>
-        <p>Loading movie details...</p>
+        <p>Loading movie...</p>
+        <Link to="/" className={styles.backToHomeLink}>
+          Back to Home
+        </Link>
       </div>
     );
   }
 
-  if (error) {
+  if (movieDetailError || !movie) {
     return (
       <div className={styles.movieDetailEmpty}>
-        <p>Error: {error}</p>
+        <p>{movieDetailError || "Movie not found"}</p>
         <Link to="/" className={styles.backToHomeLink}>
           Back to Home
         </Link>
@@ -58,23 +77,23 @@ export default function MovieDetailsPage() {
           <div className={styles.movieDetailActions}>
             <Button
               onClick={() =>
-                isInWatchlist(movie.id)
-                  ? removeFromWatchlist(movie.id)
-                  : addToWatchlist(movie)
+                isInWatchlist
+                  ? dispatch(removeFromWatchlist(movie.id))
+                  : dispatch(addToWatchlist(movie))
               }
             >
-              {isInWatchlist(movie.id)
+              {isInWatchlist
                 ? "Remove from Watchlist"
                 : "Add to Watchlist"}
             </Button>
             <Button
               onClick={() =>
-                isInFavorites(movie.id)
-                  ? removeFromFavorites(movie.id)
-                  : addToFavorites(movie)
+                isInFavorites
+                  ? dispatch(removeFromFavorites(movie.id))
+                  : dispatch(addToFavorites(movie))
               }
             >
-              {isInFavorites(movie.id)
+              {isInFavorites
                 ? "Remove from Favorites"
                 : "Add to Favorites"}
             </Button>

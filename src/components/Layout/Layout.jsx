@@ -1,11 +1,16 @@
 import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Header from "../Header/Header";
-import { useMovieContext } from "../../context/MovieContext";
 import { useMovieFilters } from "../../hooks/useMovieFilters";
+import { selectWatchlist } from "../../store/watchlistSlice";
+import { selectFavorites } from "../../store/favoritesSlice";
 import styles from "./Layout.module.css";
 
 export default function Layout() {
-  const { watchlist, favorites, isLoading, error } = useMovieContext();
+  const watchlist = useSelector(selectWatchlist);
+  const favorites = useSelector(selectFavorites);
+  const isLoading = useSelector((state) => state.movies.isLoading);
+  const error = useSelector((state) => state.movies.error);
   const { search, setSearch, genre, setGenre, rating, setRating } =
     useMovieFilters();
 

@@ -19,8 +19,3 @@
 
 ![Details](./src/assets/details.png)
 
-
-
-todo:
-optimizare fetches 
-poster css

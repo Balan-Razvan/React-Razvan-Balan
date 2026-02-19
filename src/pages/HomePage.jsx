@@ -1,19 +1,19 @@
 import { useMemo } from "react";
 import MovieList from "../components/MovieList/MovieList";
-import { useMovieContext } from "../context/MovieContext";
 import { useMovieFilters } from "../hooks/useMovieFilters";
 import { filterMovies } from "../utils/filterMovies";
+import { useSelector, useDispatch } from "react-redux";
+import { addToWatchlist, removeFromWatchlist, selectWatchlist } from "../store/watchlistSlice";
+import { addToFavorites, removeFromFavorites, selectFavorites } from "../store/favoritesSlice";
+
 
 export default function HomePage() {
-  const {
-    allMovies,
-    addToWatchlist,
-    removeFromWatchlist,
-    isInWatchlist,
-    addToFavorites,
-    removeFromFavorites,
-    isInFavorites,
-  } = useMovieContext();
+  const dispatch = useDispatch();
+  const allMovies = useSelector((state) => state.movies.allMovies);
+  const watchlist = useSelector(selectWatchlist);
+  const favorites = useSelector(selectFavorites);
+  const isInWatchlist = (movieId) => watchlist.some((m) => m.id === movieId);
+  const isInFavorites = (movieId) => favorites.some((m) => m.id === movieId);
   const { search, genre, rating } = useMovieFilters();
 
   const movies = useMemo(
@@ -25,11 +25,11 @@ export default function HomePage() {
     <MovieList
       movies={movies}
       emptyMessage="No movies found"
-      onAddToWatchlist={addToWatchlist}
-      onRemoveFromWatchlist={removeFromWatchlist}
+      onAddToWatchlist={(movie) => dispatch(addToWatchlist(movie))}
+      onRemoveFromWatchlist={(movieId) => dispatch(removeFromWatchlist(movieId))}
       isInWatchlist={isInWatchlist}
-      onAddToFavorites={addToFavorites}
-      onRemoveFromFavorites={removeFromFavorites}
+      onAddToFavorites={(movie) => dispatch(addToFavorites(movie))}
+      onRemoveFromFavorites={(movieId) => dispatch(removeFromFavorites(movieId))}
       isInFavorites={isInFavorites}
     />
   );
